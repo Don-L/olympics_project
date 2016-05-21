@@ -1,0 +1,37 @@
+<h3>Edit athlete</h3>
+
+<p>Athlete name: <%=@athlete.pretty_name%></p>
+
+<p>Athlete nation: <%=@nation.nation_name%>
+
+<form action="/athletes/<%=@athlete.id %>" method="post"> <!-- put will be performed when form submitted, but we need to enter 'post' here -->
+
+<input type="hidden" name="_method" value="put"> <!--we need this so sinatra can make the put method work, as browsers don't support put-->
+
+<label for="nation_id">Select athlete nation:</label>
+<select name="nation_id"> 
+<option selected><%=@nation.nation_name%></option>
+<% @nations.each do |nation| %>
+<%if nation.nation_name != @nation.nation_name%>
+<option value = <%=nation.id%>><%=nation.nation_name%></option>
+<%end%>
+<%end%>
+</select>
+
+<label for="last_name">Enter athlete last name:</label>
+<input type="text" name="last_name" value="<%=@athlete.last_name%>"></input>
+
+<label for="first_name">Enter athlete first name:</label>
+<input type="text" name="first_name" value="<%=@athlete.first_name%>"></input>
+
+<input type="submit" value="Save changes"></input>
+
+</form>
+
+<form action="/athletes/<%=@athlete.id%>" method="post">
+
+<input type="hidden" name="_method" value="delete" />
+
+<input type="submit" value="Delete athlete">
+
+</form>

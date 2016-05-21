@@ -1,0 +1,22 @@
+<h3>Edit nation</h3>
+
+<p>Nation name: <%=@nation.nation_name%></p>
+
+<form action="/nations/<%=@nation.id %>" method="post"> <!-- put will be performed when form submitted, but we need to enter 'post' here -->
+
+<input type="hidden" name="_method" value="put"> <!--we need this so sinatra can make the put method work, as browsers don't support put-->
+
+  <label for="nation_name">Enter new nation name:</label>
+  <input type="text" name="nation_name" value="<%=@nation.nation_name%>"></input>
+
+  <input type="submit" value="Save changes"></input>
+
+</form>
+
+<form action="/nations/<%=@nation.id%>" method="post">
+
+<input type="hidden" name="_method" value="delete" />
+
+<input type="submit" value="Delete nation">
+
+</form>

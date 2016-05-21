@@ -1,0 +1,21 @@
+<h3>Add a new athlete to the database</h3>
+
+<form action="/athletes" method="post">
+
+<label for="nation_id">Select athlete nation:</label>
+
+<select name="nation_id">
+<% @nations.each do |nation| %>
+<option value = <%=nation.id%>><%=nation.nation_name%></option>
+<%end%>
+</select>
+
+  <label for="last_name">Enter athlete last name:</label>
+  <input type="text" name="last_name"></input> 
+
+  <label for="first_name">Enter athlete first name:</label>
+  <input type="text" name="first_name"></input> 
+
+  <input type="submit" value="Save"></input>
+
+  </form>

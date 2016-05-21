@@ -74,6 +74,24 @@ class Athlete
   end
 
 
+  def self.find(id)
+
+    sql = "SELECT * FROM athletes WHERE id = #{id}"
+
+    return Athlete.map_item(sql)
+
+  end
+
+
+
+  def pretty_name
+
+    pretty_name = @first_name + ' ' + @last_name
+    return pretty_name
+
+  end
+
+
 
   def self.map_items(sql)
 

@@ -29,9 +29,24 @@ class Nation
 
   def self.all
 
-    sql = "SELECT * FROM nations;"
+    sql = "SELECT * FROM nations ORDER BY nation_name ASC;"
 
     return Nation.map_items(sql)
+
+  end
+  # def self.update(options)
+
+  #   sql = "UPDATE albums SET name = '#{options['name']}'
+  #         WHERE id = #{options['id']}"
+
+  #   SqlRunner.run(sql)
+
+
+  def self.update(options)
+
+    sql = "UPDATE nations SET nation_name = '#{options['nation_name']}' WHERE id = #{options['id']}"
+
+    SqlRunner.run(sql)
 
   end
 
@@ -52,6 +67,16 @@ class Nation
     sql = "DELETE FROM nations;"
 
     SqlRunner.run(sql)
+
+  end
+
+
+
+  def self.find(id)
+
+    sql = "SELECT * FROM nations WHERE id = #{id}"
+
+    return Nation.map_item(sql)
 
   end
 

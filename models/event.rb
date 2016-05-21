@@ -3,7 +3,7 @@ require_relative('../db/sql_runner')
 
 class Event
 
-  attr_accessor(:id, :event_name, :is_team, :a_gold_id, :a_silver_id, :a_bronze_id, :t_gold_id, :t_silver_id, :t_bronze_id)
+  attr_accessor(:id, :event_name, :is_team)
 
 
   def initialize(options)
@@ -11,12 +11,6 @@ class Event
     @id = options['id'].to_i
     @event_name = options['event_name']
     @is_team = options['is_team']
-    @a_gold_id = options['a_gold_id'].to_i
-    @a_silver_id = options['a_silver_id'].to_i
-    @a_bronze_id = options['a_bronze_id'].to_i
-    @t_gold_id = options['t_gold_id'].to_i
-    @t_silver_id = options['t_silver_id'].to_i
-    @t_bronze_id = options['t_bronze_id'].to_i
 
   end
 
@@ -44,19 +38,13 @@ class Event
 
 
 
-  def self.update(options)  # must enter ALL options to update
+  def self.update(options)
 
     sql = "UPDATE events SET 
 
-                        event_name = '#{options['event_name']}',           
-                        is_team = '#{options['is_team']}',
-                        a_gold_id = #{options['a_gold_id']},
-                        a_silver_id = #{options['a_silver_id']},
-                        a_bronze_id = #{options['a_bronze_id']},
-                        t_gold_id = #{options['t_gold_id']},
-                        t_silver_id = #{options['t_silver_id']},
-                        t_bronze_id = #{options['t_bronze_id']}
-
+                        event_name  = '#{options['event_name']}',
+                        is_team     = #{options['is_team']}
+                      
                         WHERE id = #{options['id']};"
 
     SqlRunner.run(sql)
