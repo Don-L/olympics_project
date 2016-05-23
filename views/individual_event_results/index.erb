@@ -1,0 +1,8 @@
+<h3>Results of individual events</h3><br>
+
+<% @individual_event_results.each do |result| %>
+  <h4><%=result.event.event_name%></h4><br>
+  <p>Gold Medal Winner: <%=result.ind_gold_medal_winner.pretty_name%><p><br>
+  <p>Silver Medal Winner: <%=result.ind_silver_medal_winner.pretty_name%><p><br>
+  <p>Bronze Medal Winner: <%=result.ind_bronze_medal_winner.pretty_name%><p><br>
+<%end%>

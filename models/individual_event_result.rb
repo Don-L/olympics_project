@@ -1,4 +1,6 @@
 require_relative('../db/sql_runner')
+require_relative('event')
+require_relative('athlete')
 
 
 class IndividualEventResult
@@ -71,6 +73,46 @@ class IndividualEventResult
     sql = "DELETE FROM individual_event_results;"
 
     SqlRunner.run(sql)
+
+  end
+
+
+
+  def ind_gold_medal_winner
+
+    sql = "SELECT * FROM athletes WHERE id IN(SELECT gold_athlete FROM individual_event_results WHERE id = #{@id})"
+
+    Athlete.map_item(sql)
+
+  end
+
+
+
+  def ind_silver_medal_winner
+
+    sql = "SELECT * FROM athletes WHERE id IN(SELECT silver_athlete FROM individual_event_results WHERE id = #{@id})"
+
+    Athlete.map_item(sql)
+
+  end
+
+
+
+  def ind_bronze_medal_winner
+
+    sql = "SELECT * FROM athletes WHERE id IN(SELECT bronze_athlete FROM individual_event_results WHERE id = #{@id})"
+
+    Athlete.map_item(sql)
+
+  end
+
+
+
+  def event
+
+    sql = "SELECT * FROM events WHERE id IN(SELECT event_id from individual_event_results WHERE id = #{id})"
+
+    Event.map_item(sql)
 
   end
 

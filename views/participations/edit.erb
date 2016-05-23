@@ -6,7 +6,7 @@
 
 <p>Event: <%=@participation.event.event_name%></p><br>
 
-<form action="/participations/<%=@participation.athlete_id %>/<%=@participation.event_id%>" method="post"> <!-- put will be performed when form submitted, but we need to enter 'post' here -->
+<form action="/participations/<%=@participation.id %>" method="post"> <!-- put will be performed when form submitted, but we need to enter 'post' here -->
 
 <input type="hidden" name="_method" value="put"> <!--we need this so sinatra can make the put method work, as browsers don't support put-->
 
@@ -31,6 +31,14 @@
 </select>
 
 <input type="submit" value="Save changes"></input>
+
+</form>
+
+<form action="/participations/<%=@participation.id%>" method="post">
+
+<input type="hidden" name="_method" value="delete" />
+
+<input type="submit" value="Remove athlete from event">
 
 </form>
 

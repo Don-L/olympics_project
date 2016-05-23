@@ -1,0 +1,36 @@
+<h3>Register event result</h3>
+
+<form action="/individual_event_results" method="post">
+
+<label for="event_id">Select event: </label>
+  <select name="event_id">
+  <% @events.each do |event| %>
+    <option  value = <%=event.id%>><%=event.event_name%></option>
+  <%end%>
+  </select>
+
+<label for="gold_athlete">Select gold medal winner: </label>
+  <select name="gold_athlete">
+  <% @athletes.each do |athlete| %>
+    <option  value = <%=athlete.id%>><%=athlete.formal_name%></option>
+  <%end%>
+  </select>
+
+<label for="silver_athlete">Select silver medal winner: </label>
+  <select name="silver_athlete">
+  <% @athletes.each do |athlete| %>
+    <option  value = <%=athlete.id%>><%=athlete.formal_name%></option>
+  <%end%>
+  </select>
+
+  <label for="bronze_athlete">Select bronze medal winner: </label>
+    <select name="bronze_athlete">
+    <% @athletes.each do |athlete| %>
+      <option  value = <%=athlete.id%>><%=athlete.formal_name%></option>
+    <%end%>
+    </select>
+
+<input type="submit" value="Save"></input>
+
+  </form>
+

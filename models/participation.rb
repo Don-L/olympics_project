@@ -48,8 +48,7 @@ class Participation
                         athlete_id = #{options['athlete_id']},
                         event_id = #{options['event_id']}
 
-                        WHERE athlete_id = #{@athlete_id} AND
-                              event_id = #{@event_id}"
+                        WHERE id = #{options['id']};"
 
     SqlRunner.run(sql)
 
@@ -57,9 +56,10 @@ class Participation
 
 
 
-  def self.delete(athlete_id, event_id)
 
-    sql = "DELETE FROM participations WHERE athlete_id = #{athlete_id} AND event_id = #{event_id};"
+  def self.delete(id)
+
+    sql = "DELETE FROM participations WHERE id = #{id};"
 
     SqlRunner.run(sql)
 
@@ -77,9 +77,9 @@ class Participation
 
 
 
-  def self.find(athlete_id, event_id)
+  def self.find(id)
 
-    sql = "SELECT * FROM participations WHERE athlete_id = #{athlete_id} AND event_id = #{event_id}"
+    sql = "SELECT * FROM participations WHERE id = #{id}"
 
     return Participation.map_item(sql)
 
