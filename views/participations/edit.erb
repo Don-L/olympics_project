@@ -1,0 +1,41 @@
+<h3>Edit registration</h3>
+
+<p>Athlete name: <%=@participation.athlete.formal_name%></p><br>
+
+<p>Nation: <%=@participation.athlete.nation.nation_name%></p><br>
+
+<p>Event: <%=@participation.event.event_name%></p><br>
+
+<form action="/participations/<%=@participation.athlete_id %>/<%=@participation.event_id%>" method="post"> <!-- put will be performed when form submitted, but we need to enter 'post' here -->
+
+<input type="hidden" name="_method" value="put"> <!--we need this so sinatra can make the put method work, as browsers don't support put-->
+
+<label for="athlete_id">Select athlete: </label>
+<select name="athlete_id"> 
+<option selected value =<%=@athlete.id%>><%=@athlete.formal_name%></option>
+<% @athletes.each do |athlete| %>
+<%if athlete.formal_name != @athlete.formal_name%>
+<option value = <%=athlete.id%>><%=athlete.formal_name%></option>
+<%end%>
+<%end%>
+</select>
+
+<label for="event_id">Select event: </label>
+<select name="event_id"> 
+<option selected value=<%=@event.id%>><%=@event.event_name%></option>
+<% @events.each do |event| %>
+<%if event.event_name != @event.event_name%>
+<option value = <%=event.id%>><%=event.event_name%></option>
+<%end%>
+<%end%>
+</select>
+
+<input type="submit" value="Save changes"></input>
+
+</form>
+
+
+
+
+
+

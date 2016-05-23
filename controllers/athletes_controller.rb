@@ -33,12 +33,6 @@ post '/athletes' do
 end
 
 
-# get '/nations/:id' do
-# #SHOW
-#   @nation = Nation.find(params[:id])
-#   erb :'nations/show'
-
-# end
 
 get '/athletes/:id' do
 
@@ -49,12 +43,6 @@ get '/athletes/:id' do
 end
 
 
-# get '/nations/:id/edit' do
-# #EDIT
-#   @nation = Nation.find(params[:id])
-#   erb :'nations/edit'
-
-# end
 
 get '/athletes/:id/edit' do
 
@@ -66,13 +54,6 @@ get '/athletes/:id/edit' do
 end
 
 
-# put '/nations/:id' do
-#   binding.pry
-# #UPDATE
-#   @nation = Nation.update(params)
-#   redirect to("/nations/#{params['id']}")
-
-# end
 
 put '/athletes/:id' do
 
@@ -82,15 +63,8 @@ put '/athletes/:id' do
 end
 
 
-# delete '/nations/:id' do
 
-#   Nation.delete(params[:id])
-#   redirect to('/nations')
-
-# end
-
-
-delete '/athletes/:id' do
+delete '/athletes/:id' do  #add failsafe?
 
   Athlete.delete(params[:id])
   redirect to('/athletes')

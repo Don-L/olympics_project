@@ -30,7 +30,7 @@ class Event
 
   def self.all
 
-    sql = "SELECT * FROM events;"
+    sql = "SELECT * FROM events ORDER BY event_name ASC;"
 
     return Event.map_items(sql)
 
@@ -68,6 +68,16 @@ class Event
     sql = "DELETE FROM events;"
 
     SqlRunner.run(sql)
+
+  end
+
+
+
+  def self.find(id)
+
+    sql = "SELECT * FROM events WHERE id = #{id}"
+
+    return Event.map_item(sql)
 
   end
 

@@ -31,7 +31,7 @@ class Athlete
 
   def self.all
 
-    sql = "SELECT * FROM athletes;"
+    sql = "SELECT * FROM athletes ORDER BY last_name ASC;"
 
     return Athlete.map_items(sql)
 
@@ -88,6 +88,25 @@ class Athlete
 
     pretty_name = @first_name + ' ' + @last_name
     return pretty_name
+
+  end
+
+
+
+  def formal_name
+
+    formal_name = @last_name + ', ' + @first_name
+    return formal_name
+
+  end
+
+
+
+  def nation
+
+    sql = "SELECT * FROM nations WHERE id = #{@nation_id}"
+
+    return Nation.map_item(sql)
 
   end
 

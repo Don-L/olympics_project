@@ -1,0 +1,30 @@
+<h3>Event registration</h3>
+
+<% @events.each do |event| %>
+
+  <% if event.is_team == 'f' %>
+    <br><h4><%=event.event_name%></h4><br>
+    <%Participation.athletes_at_event(event.id).each do |athlete|%>
+    <p><%=athlete.formal_name%></p>
+    <%end%>
+  <%elsif event.is_team == 't' %>
+    <br><h4><%=event.event_name%></h4>
+    <%Participation.nations(event.id).each do |nation| %>
+      <h5><%=nation.nation_name%></h5>
+      <%Participation.national_athletes(event.id, nation.id).each do |athlete|%>
+    <p><%=athlete.formal_name%></p>
+      <%end%>
+    <%end%>
+    <br>
+  <%end%>
+<%end%>
+
+
+
+<!-- find all events in participations
+
+for each event print its name
+
+if the event is a team event, print each nation's name. print each athlete competing for that nation
+
+if the event is not a team event, print the name of each participant -->

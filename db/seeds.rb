@@ -243,7 +243,9 @@ tr1 = team_result1.save
 
 trtr = TeamEventResult.all
 
+pa = Participation.national_athletes(2,3)
 
 
-# binding.pry
+
+binding.pry
 nil

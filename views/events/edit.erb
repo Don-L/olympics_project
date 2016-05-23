@@ -1,0 +1,28 @@
+<h3>Edit event</h3>
+
+<p>Event name: <%=@event.event_name%></p>
+
+<form action="/events/<%=@event.id %>" method="post"> <!-- put will be performed when form submitted, but we need to enter 'post' here -->
+
+<input type="hidden" name="_method" value="put"> <!--we need this so sinatra can make the put method work, as browsers don't support put-->
+
+<label for="event_name">Enter new event name:</label>
+<input type="text" name="event_name" value="<%=@event.event_name%>"></input>
+
+<label for="is_team">Is this a team event?:</label>
+<select name="is_team"> 
+<option value = <%=false%>>No</option>
+<option value = <%=true%>>Yes</option>
+</select>
+
+<input type="submit" value="Save changes"></input>
+
+</form>
+
+<form action="/events/<%=@event.id%>" method="post">
+
+<input type="hidden" name="_method" value="delete" />
+
+<input type="submit" value="Delete event">
+
+</form>

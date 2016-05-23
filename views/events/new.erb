@@ -1,0 +1,16 @@
+<h3>Add a new event to the database</h3>
+
+<form action="/events" method="post">
+
+<label for="event_name">Enter name of event:</label>
+<input type="text" name="event_name"></input> 
+
+<label for="is_team">Is this a team event?:</label>
+<select name="is_team">
+<option value = <%=true%>>Yes</option>
+<option value = <%=false%>>No</option>
+</select>
+
+<input type="submit" value="Save"></input>
+
+  </form>

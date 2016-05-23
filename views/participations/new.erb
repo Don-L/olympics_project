@@ -1,0 +1,22 @@
+<h3>Register an athlete for an event</h3>
+
+<form action="/participations" method="post">
+
+<label for="event_id">Select event:</label>
+<select name="event_id">
+<% @events.each do |event| %>
+  <option  value = <%=event.id%>><%=event.event_name%></option>
+<%end%>
+</select>
+
+<label for="athlete_id">Select athlete:</label>
+<select name="athlete_id">
+<% @athletes.each do |athlete| %>
+  <option  value = <%=athlete.id%>><%=athlete.formal_name%></option>
+<%end%>
+</select>
+
+<input type="submit" value="Save"></input>
+
+</form>
+
