@@ -19,3 +19,17 @@ get '/' do
   @table_rows = Analysis.nation_table_rows
   erb :'homepage'
 end
+
+# get '/' do
+
+#   @rankings = Analysis.nation_rankings
+#   erb :'homepage'
+
+# end
+
+# get '/' do
+
+#   @nations = Analysis.nations_sorted_by_points
+#   erb :'homepage'
+
+# end

@@ -1,10 +1,27 @@
-<h1>Hello world!</h1>
-
+<table>
+<caption>Nations medals table</caption>
+<thead>
+<tbody>
+<tr>  
+<th scope="col"></th>
+<th scope="col"></th>
+<th scope="col">Gold</th>
+<th scope="col">Silver</th>
+<th scope="col">Bronze</th>
+<th scope="col">Points</th>
+</tr>
+</thead>
 <%@table_rows.each do |row|%>
-  <p><%=row[0]%></p>
-  <p>Gold: <%=row[1]%></p>
-  <p>Silver: <%=row[2]%></p>
-  <p>Bronze: <%=row[3]%></p>
-  <p>Points: <%=row[4]%></p>
-  <%end%>
+<tr>
+  <td><%=row[0]%></td>
+  <td><a href="/nations/<%=row[6]%>"><%=row[1]%></a></td>
+  <td><%=row[2]%></td>
+  <td><%=row[3]%></td>
+  <td><%=row[4]%></td>
+  <td><%=row[5]%></td>
+  </tr>
+<%end%>
+</tbody>
+<tfoot><tr><td colspan="6">Olympic nations ranked in terms of points earned for medal attainment at Rio 2016</td></tr></tfoot>
+</table>
 

@@ -120,24 +120,13 @@ class Analysis
 
 
 
-  # def self.nation_table_rows
+  def self.nations_sorted_by_points
 
-  #   nations = Nation.all
-  #   table_rows = []
+    nations = Nation.all
 
-  #   for nation in nations
+    sorted = nations.sort_by! {|nation| Analysis.nation_points(nation.id)}
 
-  #     table_rows << [nation.nation_name, Analysis.nation_total_golds(nation.id), Analysis.nation_total_silvers(nation.id), Analysis.nation_total_bronzes(nation.id), Analysis.nation_points(nation.id)]
-
-  #   end
-
-  #   return table_rows
-
-  # end
-
-  def sel.nation_table_rows
-
-    rankings = Analysis.nation_rankings
+    return sorted.reverse
 
   end
 
@@ -145,57 +134,46 @@ class Analysis
 
   def self.nation_rankings
 
-
-
     nations = Nation.all
 
-    points_and_nations = []
+    points_array = []
 
     nations.each do |nation|
 
-      points_and_nations << [Analysis.nation_points(nation.id), nation]
+      points_array << [Analysis.nation_points(nation.id)]
 
     end
 
-    points_and_nations = points_and_nations.sort.reverse
+    sorted_points = points_array.sort.uniq.reverse
 
-    points_and_nations.each do |pair|
+    unsorted_rankings = points_array.map{|a| sorted_points.index(a) + 1}
 
-      if pair[0] != points_and_nations[points_and_nations.index(pair)-1][0]
+    sorted_rankings = unsorted_rankings.sort
 
-        ranking = points_and_nations.index(pair) + 1
-
-        pair << ranking
-
-      else ranking = points_and_nations[points_and_nations.index(pair)-1][2]
-
-        pair << ranking
-
-      end
-
-      for triplets in points_and_nations
-
-        triplets.reverse.pop.pop
-
-      end
-
-      return points_and_nations.flatten
+    return sorted_rankings
 
   end
 
 
-  # get the sorted array of nations and points, 
-  # eg [[3,france],[2,germany],[2,britain],[1,usa]]
 
-  # check to see if france's points = the points of the previous array entry. they don't, so france's ranking is index + 1
 
-  # check to see if germany's points = frances points. they don,t so germany's ranking is index+1
+  def self.nation_table_rows
 
-  # check to see if britain's points = germany's points. they do, so britain's ranking = germany's ranking'
-
+    nations = Analysis.nations_sorted_by_points
+    rankings = Analysis.nation_rankings
+    table_rows = []
 
 
 
+    for nation in nations
+
+      table_rows << [rankings[nations.index(nation)], nation.nation_name, Analysis.nation_total_golds(nation.id), Analysis.nation_total_silvers(nation.id), Analysis.nation_total_bronzes(nation.id), Analysis.nation_points(nation.id), nation.id]
+
+    end
+
+    return table_rows
+
+  end
 
 
 
