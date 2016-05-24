@@ -1,0 +1,54 @@
+<h3>Edit event result</h3>
+
+<h4><%=@result.event.event_name%></h4>
+
+<form action="/individual_event_results/<%=@result.id%>" method="post">
+<input type="hidden" name="_method" value="put">
+<input type='hidden' name='event_id' value="<%=@event.id%>" />
+ 
+<label for="gold_athlete">Select gold medal winner: </label>
+  <select name="gold_athlete">
+  <option selected value =<%=@athlete1.id%>><%=@athlete1.formal_name%></option>
+  <% @athletes.each do |athlete| %>
+  <%if athlete.formal_name != @athlete1.formal_name%>
+    <option value = <%=athlete.id%>><%=athlete.formal_name%></option>
+    <%end%>
+  <%end%>
+  </select>
+
+<label for="silver_athlete">Select silver medal winner: </label>
+  <select name="silver_athlete">
+  <option selected value =<%=@athlete2.id%>><%=@athlete2.formal_name%></option>
+  <% @athletes.each do |athlete| %>
+    <%if athlete.formal_name != @athlete2.formal_name%>
+    <option value = <%=athlete.id%>><%=athlete.formal_name%></option>
+    <%end%>
+  <%end%>
+  </select>
+
+  <label for="bronze_athlete">Select bronze medal winner: </label>
+    <select name="bronze_athlete">
+    <option selected value =<%=@athlete3.id%>><%=@athlete3.formal_name%></option>
+    <% @athletes.each do |athlete| %>
+      <%if athlete.formal_name != @athlete3.formal_name%>
+        <option value = <%=athlete.id%>><%=athlete.formal_name%></option>
+      <%end%>
+    <%end%>
+    </select>
+
+<input type="submit" value="Save changes"></input>
+
+</form>
+
+
+
+</form>
+
+<form action="/individual_event_results/<%=@result.id%>" method="post">
+
+<input type="hidden" name="_method" value="delete" />
+
+<input type="submit" value="Remove result from database">
+
+</form>
+

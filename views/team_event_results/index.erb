@@ -1,0 +1,8 @@
+<h3>Results of team events</h3><br>
+
+<% @team_event_results.each do |result| %>
+  <h4><%=result.event.event_name%></h4><br>
+  <p>Gold Medal Winner: <%=result.team_gold_medal_winner.nation_name%><p><br>
+  <p>Silver Medal Winner: <%=result.team_silver_medal_winner.nation_name%><p><br>
+  <p>Bronze Medal Winner: <%=result.team_bronze_medal_winner.nation_name%><p><br>
+<%end%>

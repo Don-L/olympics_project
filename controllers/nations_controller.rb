@@ -44,7 +44,6 @@ end
 
 
 put '/nations/:id' do
-  binding.pry
 #UPDATE
   @nation = Nation.update(params)
   redirect to("/nations/#{params['id']}")

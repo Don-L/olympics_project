@@ -48,6 +48,22 @@ class TeamEventResult
 
 
 
+  def self.update(options)
+
+    sql = "UPDATE team_event_results SET
+
+                      event_id = #{options['event_id']},
+                      gold_nation = #{options['gold_nation']},
+                      silver_nation = #{options['silver_nation']},
+                      bronze_nation = #{options['bronze_nation']}
+
+                      WHERE id = #{options['id']};"
+
+    SqlRunner.run(sql)
+
+  end
+
+
 
   def self.all
 
@@ -111,9 +127,19 @@ class TeamEventResult
 
   def event
 
-    sql = "SELECT * FROM events WHERE id IN(SELECT event_id from team_event_results WHERE id = #{id})"
+    sql = "SELECT * FROM events WHERE id = #{@event_id}"
 
     Event.map_item(sql)
+
+  end
+
+
+
+  def self.find(id)
+
+    sql = "SELECT * FROM team_event_results WHERE id = #{id}"
+
+    return TeamEventResult.map_item(sql)
 
   end
 

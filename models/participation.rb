@@ -2,6 +2,7 @@ require_relative('../db/sql_runner')
 require_relative('event')
 require_relative('athlete')
 require_relative('nation')
+require_relative('participation')
 
 
 class Participation
@@ -122,6 +123,16 @@ class Participation
     sql = "SELECT * FROM events WHERE id = #{event_id}"
 
     return Event.map_item(sql)
+
+  end
+
+
+
+  def self.event_athletes(event_id)
+
+    sql = "SELECT * FROM athletes WHERE id IN(SELECT athlete_id FROM participations WHERE event_id = #{event_id});"
+
+    return Athlete.map_items(sql)
 
   end
 

@@ -7,8 +7,15 @@ require_relative('controllers/events_controller')
 require_relative('controllers/participations_controller')
 require_relative('controllers/individual_event_results_controller.rb')
 require_relative('controllers/team_event_results_controller.rb')
+require_relative('models/analysis')
 
+
+# get '/' do
+#   @nations = Nation.all
+#   erb :'homepage'
+# end
 
 get '/' do
+  @table_rows = Analysis.nation_table_rows
   erb :'homepage'
 end

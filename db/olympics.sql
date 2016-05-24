@@ -41,9 +41,9 @@ ALTER TABLE participations ADD UNIQUE (athlete_id, event_id);
 CREATE TABLE team_event_results(
 id serial4 primary key,
 event_id INT4 references events(id) ON DELETE CASCADE,
-gold_nation INT4 references nations(id) ON DELETE CASCADE,
-silver_nation INT4 references nations(id) ON DELETE CASCADE,
-bronze_nation INT4 references nations(id) ON DELETE CASCADE
+gold_nation INT4 references nations(id) ON DELETE CASCADE CHECK(gold_nation != silver_nation),
+silver_nation INT4 references nations(id) ON DELETE CASCADE CHECK(silver_nation != bronze_nation),
+bronze_nation INT4 references nations(id) ON DELETE CASCADE CHECK(bronze_nation != gold_nation)
 );
 
 ALTER TABLE team_event_results ADD UNIQUE (event_id);
@@ -51,12 +51,13 @@ ALTER TABLE team_event_results ADD UNIQUE (event_id);
 CREATE TABLE individual_event_results(
 id serial4 primary key,
 event_id INT4 references events(id) ON DELETE CASCADE,
-gold_athlete INT4 references athletes(id) ON DELETE CASCADE,
-silver_athlete INT4 references athletes(id) ON DELETE CASCADE,
-bronze_athlete INT4 references athletes(id) ON DELETE CASCADE
+gold_athlete INT4 references athletes(id) ON DELETE CASCADE CHECK(gold_athlete != silver_athlete),
+silver_athlete INT4 references athletes(id) ON DELETE CASCADE CHECK(silver_athlete != bronze_athlete),
+bronze_athlete INT4 references athletes(id) ON DELETE CASCADE CHECK(bronze_athlete != gold_athlete)
 );
 
 ALTER TABLE individual_event_results ADD UNIQUE (event_id);
+
 
 
 

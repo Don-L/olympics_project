@@ -5,7 +5,9 @@
 <label for="event_id">Select event: </label>
   <select name="event_id">
   <% @events.each do |event| %>
+    <% if event.is_team == 'f' %>
     <option  value = <%=event.id%>><%=event.event_name%></option>
+    <%end%>
   <%end%>
   </select>
 

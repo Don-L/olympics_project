@@ -1,1 +1,10 @@
 <h1>Hello world!</h1>
+
+<%@table_rows.each do |row|%>
+  <p><%=row[0]%></p>
+  <p>Gold: <%=row[1]%></p>
+  <p>Silver: <%=row[2]%></p>
+  <p>Bronze: <%=row[3]%></p>
+  <p>Points: <%=row[4]%></p>
+  <%end%>
+

@@ -1,0 +1,37 @@
+<h3>Register event result</h3>
+
+<form action="/team_event_results" method="post">
+
+<label for="event_id">Select event: </label>
+  <select name="event_id">
+  <% @events.each do |event| %>
+    <% if event.is_team == 't' %>
+    <option  value = <%=event.id%>><%=event.event_name%></option>
+    <%end%>
+  <%end%>
+  </select>
+
+<label for="gold_nation">Select gold medal winner: </label>
+  <select name="gold_nation">
+  <% @nations.each do |nation| %>
+    <option  value = <%=nation.id%>><%=nation.nation_name%></option>
+  <%end%>
+  </select>
+
+<label for="silver_nation">Select silver medal winner: </label>
+  <select name="silver_nation">
+  <% @nations.each do |nation| %>
+    <option  value = <%=nation.id%>><%=nation.nation_name%></option>
+  <%end%>
+  </select>
+
+  <label for="bronze_nation">Select bronze medal winner: </label>
+    <select name="bronze_nation">
+    <% @nations.each do |nation| %>
+      <option  value = <%=nation.id%>><%=nation.nation_name%></option>
+    <%end%>
+    </select>
+
+<input type="submit" value="Save"></input>
+
+  </form>

@@ -1,0 +1,53 @@
+<h3>Edit event result</h3>
+
+<h4><%=@result.event.event_name%></h4>
+
+<form action="/team_event_results/<%=@result.id%>" method="post">
+<input type="hidden" name="_method" value="put">
+<input type='hidden' name='event_id' value="<%=@event.id%>" />
+ 
+<label for="gold_nation">Select gold medal winner: </label>
+  <select name="gold_nation">
+  <option selected value =<%=@nation1.id%>><%=@nation1.nation_name%></option>
+  <% @nations.each do |nation| %>
+  <%if nation.nation_name != @nation1.nation_name%>
+    <option value = <%=nation.id%>><%=nation.nation_name%></option>
+    <%end%>
+  <%end%>
+  </select>
+
+<label for="silver_nation">Select silver medal winner: </label>
+  <select name="silver_nation">
+  <option selected value =<%=@nation2.id%>><%=@nation2.nation_name%></option>
+  <% @nations.each do |nation| %>
+    <%if nation.nation_name != @nation2.nation_name%>
+    <option value = <%=nation.id%>><%=nation.nation_name%></option>
+    <%end%>
+  <%end%>
+  </select>
+
+  <label for="bronze_nation">Select bronze medal winner: </label>
+    <select name="bronze_nation">
+    <option selected value =<%=@nation3.id%>><%=@nation3.nation_name%></option>
+    <% @nations.each do |nation| %>
+      <%if nation.nation_name != @nation3.nation_name%>
+        <option value = <%=nation.id%>><%=nation.nation_name%></option>
+      <%end%>
+    <%end%>
+    </select>
+
+<input type="submit" value="Save changes"></input>
+
+</form>
+
+
+
+</form>
+
+<form action="/team_event_results/<%=@result.id%>" method="post">
+
+<input type="hidden" name="_method" value="delete" />
+
+<input type="submit" value="Remove result from database">
+
+</form>

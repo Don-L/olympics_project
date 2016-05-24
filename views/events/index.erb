@@ -2,4 +2,5 @@
 
 <% @events.each do |event| %>
 <p><%=event.event_name%><p><br>
+<a href="/team_event_results/new?event=<%=event.id%>">TEST</a>
 <%end%>

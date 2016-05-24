@@ -1,4 +1,8 @@
 require_relative('../db/sql_runner')
+require_relative('nation')
+require_relative('athlete')
+require_relative('individual_event_result')
+require_relative('team_event_result')
 
 
 class Event
@@ -48,6 +52,45 @@ class Event
                         WHERE id = #{options['id']};"
 
     SqlRunner.run(sql)
+
+  end
+
+
+
+  # def self.unresolved_team_events
+
+  #   all_events = Event.all
+  #   resolved_event_ids = []
+  #   TeamEventResult.all.each do |result|
+  #     resolved_event_ids << result.event_id
+  #   end
+  #   event_ids 
+  #   unresolved_team_events = []
+    
+  #     if 
+
+
+  # end
+
+
+
+  def result
+
+    if @is_team == true
+
+      sql = "SELECT * from team_event_results WHERE event_id = #{@id}"
+
+      result = TeamEventResult.map_item(sql)
+
+    elsif @is_team == false
+
+      sql = "SELECT * from individual_event_results WHERE event_id = #{@id}"
+
+      result = IndividualEventResult.map_item(sql)
+
+    end
+
+    return result
 
   end
 

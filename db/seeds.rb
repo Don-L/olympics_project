@@ -247,5 +247,5 @@ pa = Participation.national_athletes(2,3)
 
 
 
-binding.pry
-nil
+# binding.pry
+# nil

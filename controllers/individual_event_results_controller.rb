@@ -7,13 +7,6 @@ require_relative('../models/individual_event_result.rb')
 
 
 
-# get '/participations' do
-
-#   @events = Event.all
-#   erb :'participations/index'
-
-# end
-
 get '/individual_event_results' do
 
   @individual_event_results = IndividualEventResult.all
@@ -23,72 +16,66 @@ end
 
 
 
-# get '/participations/new' do
-
-# @athletes = Athlete.all
-# @events = Event.all
-# @participations = Participation.all
-# erb :'participations/new'
-
-# end
-
-
 get '/individual_event_results/new' do
 
   @athletes = Athlete.all
   @events = Event.all
+  erb :'individual_event_results/new'
 
 end
 
 
 
-# post '/participations' do
+post '/individual_event_results' do
 
-#   @participation = Participation.new(params)
-#   @participation.save
-#   erb :'participations/create'
+  @result = IndividualEventResult.new(params).save
+  @event = @result.event
+  erb :'individual_event_results/create'
 
-# end
-
-
-
-# get '/participations/:id' do
-
-#   @participation = Participation.find(params[:id])
-#   erb :'participations/show'
-
-# end
+end
 
 
 
-# get '/participations/:id/edit' do
+get '/individual_event_results/:id' do
 
-#   @participation = Participation.find(params[:id])
-#   @athlete = @participation.athlete
-#   @athletes = Athlete.all
-#   @event = @participation.event
-#   @events = Event.all
-#   erb :'participations/edit'
+  @result = IndividualEventResult.find(params[:id])
+  @event = @result.event
+  erb :'individual_event_results/show'
 
-# end
+end
 
 
 
-# put '/participations/:id' do
-#   # binding.pry
-#   @participation = Participation.update(params)
-#   redirect to("/participations/#{params['id']}")
+get '/individual_event_results/:id/edit' do
 
-# end
+  @result = IndividualEventResult.find(params[:id])
+  @event = @result.event
+  @athletes = Participation.event_athletes(@event.id)
+  @athlete1 = @result.ind_gold_medal_winner
+  @athlete2 = @result.ind_silver_medal_winner
+  @athlete3 = @result.ind_bronze_medal_winner
+  @events = Event.all
+  erb :'individual_event_results/edit'
+
+end
 
 
 
-# delete '/participations/:id' do 
+put '/individual_event_results/:id' do
 
-#   Participation.delete(params[:id])
-#   redirect to('/participations')
+  IndividualEventResult.update(params)
+  redirect to("/individual_event_results/#{params['id']}")
 
-# end
+end
+
+
+
+delete '/individual_event_results/:id' do
+
+  IndividualEventResult.delete(params[:id])
+  redirect to('/individual_event_results')
+
+end
 
 
 
