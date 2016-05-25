@@ -2,14 +2,15 @@
 
 <form action="/individual_event_results" method="post">
 
-<label for="event_id">Select event: </label>
-  <select name="event_id">
-  <% @events.each do |event| %>
-    <% if event.is_team == 'f' %>
-    <option  value = <%=event.id%>><%=event.event_name%></option>
+  <label for="event_id">Select event: </label>
+    <select name="event_id">
+  <option selected value=<%=@event.id%>><%=@event.event_name%></option>
+    <% @events.each do |event| %>
+      <%if event.id != @event.id%>
+      <option  value = <%=event.id%>><%=event.event_name%></option>
+      <%end%>
     <%end%>
-  <%end%>
-  </select>
+    </select>
 
 <label for="gold_athlete">Select gold medal winner: </label>
   <select name="gold_athlete">

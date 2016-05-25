@@ -30,6 +30,12 @@ end
 get '/nations/:id' do
 #SHOW
   @nation = Nation.find(params[:id])
+  @gold_results = Nation.all_gold_results(@nation.id)
+  @silver_results = Nation.all_silver_results(@nation.id)
+  @bronze_results = Nation.all_bronze_results(@nation.id)
+  @events = Nation.all_events(@nation.id)
+  @athletes = Nation.all_athletes(@nation.id)
+  # binding.pry
   erb :'nations/show'
 
 end

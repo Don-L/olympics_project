@@ -105,6 +105,16 @@ class TeamEventResult
 
 
 
+  def self.gold_team_athletes(id)
+
+    sql = "SELECT * FROM athletes WHERE id IN(SELECT athlete_id FROM participations WHERE event_id = #{id} AND athlete_id IN(SELECT id FROM athletes WHERE nation_id IN(SELECT gold_nation FROM team_event_results WHERE event_id = #{id})));"
+
+    Athlete.map_items(sql)
+
+  end
+
+
+
   def team_silver_medal_winner
 
     sql = "SELECT * FROM nations WHERE id IN(SELECT silver_nation FROM team_event_results WHERE id = #{@id})"
@@ -115,11 +125,31 @@ class TeamEventResult
 
 
 
+  def self.silver_team_athletes(id)
+
+    sql = "SELECT * FROM athletes WHERE id IN(SELECT athlete_id FROM participations WHERE event_id = #{id} AND athlete_id IN(SELECT id FROM athletes WHERE nation_id IN(SELECT silver_nation FROM team_event_results WHERE event_id = #{id})));"
+
+    Athlete.map_items(sql)
+
+  end
+
+
+
   def team_bronze_medal_winner
 
     sql = "SELECT * FROM nations WHERE id IN(SELECT bronze_nation FROM team_event_results WHERE id = #{@id})"
 
     Nation.map_item(sql)
+
+  end
+
+
+
+  def self.bronze_team_athletes(id)
+
+    sql = "SELECT * FROM athletes WHERE id IN(SELECT athlete_id FROM participations WHERE event_id = #{id} AND athlete_id IN(SELECT id FROM athletes WHERE nation_id IN(SELECT silver_nation FROM team_event_results WHERE event_id = #{id})));"
+
+    Athlete.map_items(sql)
 
   end
 

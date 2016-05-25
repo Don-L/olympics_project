@@ -1,2 +1,38 @@
-<h3><%=@athlete.pretty_name%></h3><br>
-<h4><%=@nation.nation_name%></h4>
+<h3><%=@athlete.pretty_name%></h3>
+<h4><a href="/nations/<%=@nation.id%>"><%=@nation.nation_name%></a></h4>
+
+<%if @athlete.number_of_golds + @athlete.number_of_silvers + @athlete.number_of_bronzes == 0%>
+<p>This athlete has not yet won any medals</p>
+<%end%>
+
+<%if @athlete.number_of_golds > 0%>
+<p>Gold medals: <%=@athlete.number_of_golds%></p>
+<%@gold_results.each do |result|%>
+  <p><%=result.event.event_name%></p>
+  <%end%>
+<%end%>
+
+<%if @athlete.number_of_silvers > 0%>
+<p>Silver medals: <%=@athlete.number_of_silvers%></p>
+<%@silver_results.each do |result|%>
+  <p><%=result.event.event_name%></p>
+  <%end%>
+<%end%>
+
+<%if @athlete.number_of_bronzes > 0%>
+<p>Bronze medals: <%=@athlete.number_of_bronzes%></p>
+<%@bronze_results.each do |result|%>
+  <p><%=result.event.event_name%></p>
+  <%end%>
+<%end%>
+
+<h4>Events</h4>
+<%if @events.length <= 0%>
+<p>This athlete has not yet been registered for any events</p>
+<%elsif @events.length > 0%>
+<%@events.each do |event|%>
+<a href="/events/<%=event.id%>"><%=event.event_name%></a><br>
+<p><a href="/participations/<%=@athlete.participation(event.id).id%>/edit">Edit/delete registration</a></p>
+<%end%>
+<%end%>
+<p><a href="/participations/new">Register athlete for new event</a></p>

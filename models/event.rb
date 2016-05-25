@@ -1,3 +1,4 @@
+require('pry-byebug')
 require_relative('../db/sql_runner')
 require_relative('nation')
 require_relative('athlete')
@@ -42,6 +43,26 @@ class Event
 
 
 
+  def self.all_team
+
+    sql = "SELECT * FROM events WHERE is_team = 't' ORDER BY event_name ASC"
+
+    return Event.map_items(sql)
+
+  end
+
+
+
+  def self.all_individual
+
+    sql = "SELECT * FROM events WHERE is_team = 'f' ORDER BY event_name ASC"
+
+    return Event.map_items(sql)
+
+  end
+
+
+
   def self.update(options)
 
     sql = "UPDATE events SET 
@@ -56,6 +77,40 @@ class Event
   end
 
 
+
+  def has_result?
+
+    if @is_team == 't'
+
+      sql = "SELECT * FROM team_event_results WHERE event_id = #{@id}"
+
+      result = TeamEventResult.map_items(sql)
+
+      if result.length == 0
+
+        return false
+
+      else return true
+
+      end
+
+    elsif @is_team == 'f'
+
+      sql = "SELECT * FROM individual_event_results WHERE event_id = #{@id}"
+
+      result = IndividualEventResult.map_items(sql)
+
+      if result.length == 0
+
+        return false
+
+      else return true
+
+      end
+
+    end
+
+  end
 
   # def self.unresolved_team_events
 
@@ -74,15 +129,25 @@ class Event
 
 
 
+  def self.competing_nations(id)
+
+    sql = "SELECT * FROM nations WHERE id IN(SELECT nation_id FROM athletes WHERE id IN(SELECT athlete_id FROM participations WHERE event_id = #{id})) ORDER BY nation_name ASC"
+
+    return Nation.map_items(sql)
+
+  end
+
+
+
   def result
 
-    if @is_team == true
+    if @is_team == 't'
 
       sql = "SELECT * from team_event_results WHERE event_id = #{@id}"
 
       result = TeamEventResult.map_item(sql)
 
-    elsif @is_team == false
+    elsif @is_team == 'f'
 
       sql = "SELECT * from individual_event_results WHERE event_id = #{@id}"
 

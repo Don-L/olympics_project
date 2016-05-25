@@ -1,6 +1,5 @@
 <h3>Events</h3>
 
 <% @events.each do |event| %>
-<p><%=event.event_name%><p><br>
-<a href="/team_event_results/new?event=<%=event.id%>">TEST</a>
+<a href="/events/<%=event.id%>"><%=event.event_name%></a><br>
 <%end%>

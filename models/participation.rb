@@ -130,7 +130,7 @@ class Participation
 
   def self.event_athletes(event_id)
 
-    sql = "SELECT * FROM athletes WHERE id IN(SELECT athlete_id FROM participations WHERE event_id = #{event_id});"
+    sql = "SELECT * FROM athletes WHERE id IN(SELECT athlete_id FROM participations WHERE event_id = #{event_id}) ORDER BY last_name ASC;"
 
     return Athlete.map_items(sql)
 

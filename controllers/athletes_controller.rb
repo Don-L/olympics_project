@@ -38,6 +38,16 @@ get '/athletes/:id' do
 
   @athlete = Athlete.find(params[:id])
   @nation = Nation.find(@athlete.nation_id)
+  @events = @athlete.events
+  # @team_golds = Athlete.team_golds(@athlete.id)
+  # @team_silvers = Athlete.team_golds(@athlete.id)
+  # @team_bronzes = Athlete.team_golds(@athlete.id)
+  # @ind_golds = Athlete.ind_golds(@athlete.id)
+  # @ind_silvers = Athlete.ind_silvers(@athlete.id)
+  # @ind_bronzes = Athlete.ind_bronzes(@athlete.id)
+  @gold_results = Athlete.all_golds(@athlete.id, @athlete.nation_id)
+  @silver_results = Athlete.all_silvers(@athlete.id, @athlete.nation_id)
+  @bronze_results = Athlete.all_bronzes(@athlete.id, @athlete.nation_id)
   erb :'athletes/show'
 
 end

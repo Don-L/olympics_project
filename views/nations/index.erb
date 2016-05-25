@@ -1,5 +1,5 @@
 <h3>Nations</h3>
 
 <% @nations.each do |nation| %>
-<p><%=nation.nation_name%><p><br>
+<p><a href="/nations/<%=nation.id%>"><%=nation.nation_name%></a><p><br>
 <%end%>

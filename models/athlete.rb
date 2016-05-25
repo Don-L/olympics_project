@@ -112,6 +112,123 @@ class Athlete
 
 
 
+  def events
+
+    sql = "SELECT * FROM events WHERE id IN(SELECT event_id FROM participations WHERE athlete_id = #{@id})"
+
+    return Event.map_items(sql)
+
+  end
+
+
+
+  def participation(event_id)
+
+    sql = "SELECT * FROM participations WHERE athlete_id = #{@id} AND event_id = #{event_id}"
+
+    return Participation.map_item(sql)
+
+  end
+
+
+
+  def self.team_golds(id, nation_id)
+
+    sql = "SELECT * FROM team_event_results WHERE gold_nation = #{nation_id} AND event_id IN(SELECT event_id FROM participations WHERE athlete_id = #{id});"
+
+    return TeamEventResult.map_items(sql)
+
+  end
+
+
+  def self.team_silvers(id, nation_id)
+
+    sql = "SELECT * FROM team_event_results WHERE silver_nation = #{nation_id} AND event_id IN(SELECT event_id FROM participations WHERE athlete_id = #{id})"
+
+    return TeamEventResult.map_items(sql)
+
+  end
+
+  def self.team_bronzes(id, nation_id)
+
+    sql = "SELECT * FROM team_event_results WHERE bronze_nation = #{nation_id} AND event_id IN(SELECT event_id FROM participations WHERE athlete_id = #{id})"
+
+    return TeamEventResult.map_items(sql)
+
+  end
+
+
+
+  def self.ind_golds(id)
+
+    sql = "SELECT * FROM individual_event_results WHERE gold_athlete = #{id}"
+
+    return IndividualEventResult.map_items(sql)
+
+  end
+
+  def self.ind_silvers(id)
+
+    sql = "SELECT * FROM individual_event_results WHERE silver_athlete = #{id}"
+
+    return IndividualEventResult.map_items(sql)
+
+  end
+
+  def self.ind_bronzes(id)
+
+    sql = "SELECT * FROM individual_event_results WHERE bronze_athlete = #{id}"
+
+    return IndividualEventResult.map_items(sql)
+
+  end
+
+
+
+  def self.all_golds(id, nation_id)
+
+    total_golds = Athlete.team_golds(id, nation_id) + Athlete.ind_golds(id)
+
+    return total_golds.flatten.sort_by {|result| result.event.event_name}
+
+  end
+
+  def self.all_silvers(id, nation_id)
+
+    total_silvers = Athlete.team_silvers(id, nation_id) + Athlete.ind_silvers(id)
+
+    return total_silvers.flatten.sort_by {|result| result.event.event_name}
+
+  end
+
+  def self.all_bronzes(id, nation_id)
+
+    total_bronzes = Athlete.team_bronzes(id, nation_id) + Athlete.ind_bronzes(id)
+
+    return total_bronzes.flatten.sort_by {|result| result.event.event_name}
+
+  end
+
+  def number_of_golds
+
+    Athlete.all_golds(@id, @nation_id).length
+
+  end
+
+  def number_of_silvers
+
+    Athlete.all_silvers(@id, @nation_id).length
+
+  end
+
+  def number_of_bronzes
+
+    Athlete.all_bronzes(@id, @nation_id).length
+
+  end
+
+
+
   def self.map_items(sql)
 
     athletes = SqlRunner.run(sql)

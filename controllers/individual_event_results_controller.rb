@@ -18,11 +18,17 @@ end
 
 get '/individual_event_results/new' do
 
+  if params[:event] == nil
+    @event = Event.all_individual.first
+  else
+    @event = Event.find(params[:event])
+  end
   @athletes = Athlete.all
-  @events = Event.all
+  @events = Event.all_individual
   erb :'individual_event_results/new'
-
 end
+
+
 
 
 
@@ -54,7 +60,7 @@ get '/individual_event_results/:id/edit' do
   @athlete1 = @result.ind_gold_medal_winner
   @athlete2 = @result.ind_silver_medal_winner
   @athlete3 = @result.ind_bronze_medal_winner
-  @events = Event.all
+  @events = Event.all_individual
   erb :'individual_event_results/edit'
 
 end

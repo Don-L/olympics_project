@@ -1,6 +1,63 @@
 <h3><%=@event.event_name%></h3><br>
+<a href="/events/<%=@event.id%>/edit">Edit/delete event</a>
 <%if @event.is_team == 't'%>
-  <h4>Team event</h4><br>
+  <p>Team event</p><br>
+  <%if @event.has_result? == true%>
+  <p>Gold medal winners: </p>
+  <h5><a href="/nations/<%=@event.result.team_gold_medal_winner.id%>"><%=@event.result.team_gold_medal_winner.nation_name%></a></h5>
+  <%@gold_athletes.each do |athlete|%>
+    <p><a href="/athletes/<%=athlete.id%>"><%=athlete.pretty_name%></a></p>
+    <%end%>
+  <p>Silver medal winners: </p>
+  <h5><a href="/nations/<%=@event.result.team_silver_medal_winner.id%>"><%=@event.result.team_silver_medal_winner.nation_name%></a></h5>
+  <%@silver_athletes.each do |athlete|%>
+    <p><a href="/athletes/<%=athlete.id%>"><%=athlete.pretty_name%></a></p>
+    <%end%>
+  <p>Bronze medal winners: </p>
+  <h5><a href="/nations/<%=@event.result.team_bronze_medal_winner.id%>"><%=@event.result.team_bronze_medal_winner.nation_name%></a></h5>
+  <%@bronze_athletes.each do |athlete|%>
+    <p><a href="/athletes/<%=athlete.id%>"><%=athlete.pretty_name%></a></p>
+    <%end%>
+    <a href="/team_event_results/<%=@event.result.id%>/edit">Edit result</a>
+  <%else%><p>No result has been recorded for this event</p>
+  <a href="/team_event_results/new/?event=<%=@event.id%>">Register result</a>
+  <%end%>
   <%else%>
   <h4>Individual event</h4>
+  <%if @event.has_result? == true%>
+  <p>Gold medal winner: </p><a href="/athletes/<%=@event.result.ind_gold_medal_winner.id%>"><%=@event.result.ind_gold_medal_winner.pretty_name%></a>
+  <p>Silver medal winner: </p><a href="/athletes/<%=@event.result.ind_silver_medal_winner.id%>"><%=@event.result.ind_silver_medal_winner.pretty_name%></a>
+  <p>Bronze medal winner: </p><a href="/athletes/<%=@event.result.ind_bronze_medal_winner.id%>"><%=@event.result.ind_bronze_medal_winner.pretty_name%></a>
+  <%else%><p>No result has been recorded for this event</p>
+  <a href="/individual_event_results/new?event=<%=@event.id%>">Register result</a>
   <%end%>
+  <%if @event.has_result? == true%>
+  <p><a href="/individual_event_results/<%=@event.result.id%>/edit">Edit result</a></p>
+  <%end%>
+  <%end%>
+
+<%if @event.is_team == 't' && @competing_nations.length >0%>
+<h4>Competitors</h4>
+<%@competing_nations.each do |nation|%>
+  <h5><a href="/nations/<%=nation.id%>"><%=nation.nation_name%></a></h5>
+  <%Participation.national_athletes(@event.id, nation.id).each do |athlete|%>
+  <p><a href="/athletes/<%=athlete.id%>"><%=athlete.formal_name%><a></p>
+  <p><a href="/participations/<%=athlete.participation(@event.id).id%>/edit">Edit/delete registration</a><p>
+  <%end%>
+<%end%>
+<%elsif @event.is_team == 'f' && Participation.event_athletes(@event.id).length > 0%>
+<h4>Competitors</h4>
+  <%Participation.event_athletes(@event.id).each do |athlete|%>
+  <p><a href="/athletes/<%=athlete.id%>"><%=athlete.formal_name%></a></p>
+  <p><a href="/participations/<%=athlete.participation(@event.id).id%>/edit">Edit/delete registration</a><p>
+  <%end%>
+<%end%>
+
+<p><a href="/participations/new">Add competitor</a></p>
+
+
+
+
+
+
+

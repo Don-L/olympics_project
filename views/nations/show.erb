@@ -1,1 +1,58 @@
 <h3><%=@nation.nation_name%></h3>
+
+<%if @nation.won_golds? == true%>
+<p>Gold medals: <%=@nation.number_of_golds%></p>
+<%end%>
+
+<%if @nation.won_silvers? == true%>
+<p>Silver medals: <%=@nation.number_of_silvers%></p>
+<%end%>
+
+<%if @nation.won_bronzes? == true%>
+<p>Bronze medals: <%=@nation.number_of_bronzes%></p>
+<%end%>
+
+
+<%if @nation.won_golds? == true%>
+<p>Gold medal events: </p>
+<%@gold_results.each do |result|%>
+<a href="/events/<%=result.event.id%>"><%=result.event.event_name%></a>
+<%end%>
+<%end%>
+
+<%if @nation.won_silvers? == true%>
+<p>Silver medal events: </p>
+<%@silver_results.each do |result|%>
+<a href="/events/<%=result.event.id%>"><%=result.event.event_name%></a>
+<%end%>
+<%end%>
+
+<%if @nation.won_bronzes? == true%>
+<p>Bronze medal events: </p>
+<%@bronze_results.each do |result|%>
+<a href="/events/<%=result.event.id%>"><%=result.event.event_name%></a>
+<%end%>
+<%end%>
+
+<h4>Registered events </h4>
+  <%@events.each do |event|%>
+  <p><a href="/events/<%=event.id%>"><%=event.event_name%></a></p>
+  <%end%>
+
+
+<h4>All athletes </h4>
+  <%@athletes.each do |athlete|%>
+  <p><a href="/athletes/<%=athlete.id%>"><%=athlete.formal_name%></a></p>
+  <%end%>
+
+
+
+
+
+
+
+
+
+
+
+

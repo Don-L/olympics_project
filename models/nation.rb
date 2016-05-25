@@ -34,12 +34,7 @@ class Nation
     return Nation.map_items(sql)
 
   end
-  # def self.update(options)
 
-  #   sql = "UPDATE albums SET name = '#{options['name']}'
-  #         WHERE id = #{options['id']}"
-
-  #   SqlRunner.run(sql)
 
 
   def self.update(options)
@@ -96,6 +91,175 @@ class Nation
 
     result = Nation.map_items(sql)
     return result.first
+
+  end
+
+
+
+  def self.team_gold_results(id)
+
+    sql = "SELECT * FROM team_event_results WHERE gold_nation = #{id}"
+
+    return TeamEventResult.map_items(sql)
+
+  end
+
+
+
+  def self.team_silver_results(id)
+
+    sql = "SELECT * FROM team_event_results WHERE silver_nation = #{id}"
+
+    return TeamEventResult.map_items(sql)
+
+  end
+
+
+
+  def self.team_bronze_results(id)
+
+    sql = "SELECT * FROM team_event_results WHERE bronze_nation = #{id}"
+
+    return TeamEventResult.map_items(sql)
+
+  end
+
+
+
+  def self.individual_gold_results(id)
+
+    sql = "SELECT * FROM individual_event_results WHERE gold_athlete IN(SELECT id FROM athletes WHERE nation_id = #{id})"
+
+    return IndividualEventResult.map_items(sql)
+
+  end
+
+
+
+  def self.individual_silver_results(id)
+
+    sql = "SELECT * FROM individual_event_results WHERE silver_athlete IN(SELECT id FROM athletes WHERE nation_id = #{id})"
+
+    return IndividualEventResult.map_items(sql)
+
+  end
+
+
+
+  def self.individual_bronze_results(id)
+
+    sql = "SELECT * FROM individual_event_results WHERE bronze_athlete IN(SELECT id FROM athletes WHERE nation_id = #{id})"
+
+    return IndividualEventResult.map_items(sql)
+
+  end
+
+
+
+  def self.all_gold_results(id)
+
+    results = Nation.team_gold_results(id) + Nation.individual_gold_results(id)
+
+    return results.flatten.sort_by! {|result| result.event.event_name}
+
+  end
+
+
+  def number_of_golds
+
+    Nation.all_gold_results(@id).length
+
+  end
+
+
+
+  def self.all_silver_results(id)
+
+    results = Nation.team_silver_results(id) + Nation.individual_silver_results(id)
+
+    return results.flatten.sort_by! {|result| result.event.event_name}
+
+  end
+
+
+
+  def number_of_silvers
+
+    Nation.all_silver_results(@id).length
+
+  end
+
+
+
+  def self.all_bronze_results(id)
+
+    results = Nation.team_bronze_results(id) + Nation.individual_bronze_results(id)
+
+    return results.flatten.sort_by! {|result| result.event.event_name}
+
+  end
+
+
+
+  def number_of_bronzes
+
+    Nation.all_bronze_results(@id).length
+
+  end
+
+
+
+  def won_golds?
+
+    if Nation.all_gold_results(@id).length > 0
+      return true
+    else
+      return false
+    end
+
+  end
+
+
+
+  def won_silvers?
+
+    if Nation.all_silver_results(@id).length > 0
+      return true
+    else
+      return false
+    end
+
+  end
+
+
+
+  def won_bronzes?
+
+    if Nation.all_bronze_results(@id).length > 0
+      return true
+    else
+      return false
+    end
+
+  end
+
+
+
+  def self.all_events(id)
+
+    sql = "SELECT * FROM events WHERE id IN(SELECT event_id FROM participations WHERE athlete_id IN(SELECT id FROM athletes WHERE nation_id = #{id}))"
+
+    return Event.map_items(sql).sort_by! {|event| event.event_name}
+
+  end
+
+
+
+  def self.all_athletes(id)
+
+    sql = "SELECT * FROM athletes WHERE nation_id = #{id}"
+
+    return Athlete.map_items(sql).sort_by {|athlete| athlete.last_name}
 
   end
 

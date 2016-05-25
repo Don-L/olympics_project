@@ -16,14 +16,31 @@ end
 
 
 
+#do same for individual event results new!
+
+
+
 get '/team_event_results/new' do
 
   @nations = Nation.all
   @events = Event.all
+  @event = @events.first #needed so page works
   erb :'team_event_results/new'
 
 end
 
+get '/team_event_results/new/' do #used when accessed from event show
+  
+  if params[:event] == nil
+    @event = Event.all_team.first
+    @nations = Nation.all
+  else
+    @event = Event.find(params[:event])
+    @nations = Event.competing_nations(@event.id)
+  end
+  @events = Event.all_team
+  erb :'team_event_results/new'
+end
 
 
 # get '/team_event_results/new?event=:id'
@@ -31,6 +48,17 @@ end
 
 
 # end
+
+
+# get 'team_event_results/new/' do  #experimental!
+# binding.pry
+#   # @event = Event.find(11)
+#   @nations = Nation.all
+#   @events = Event.all
+#   erb :'team_event_results/new'
+
+# end
+
 
 
 
@@ -51,18 +79,6 @@ get '/team_event_results/:id' do
   erb :'team_event_results/show'
 
 end
-
-# get '/team_event_results/:id' do
-
-#   @result = TeamEventResult.find(params[:id])
-#   if @result == nil
-#     redirect to('/team_event_results/:id/edit')
-#   else
-#   @event = @result.event
-#   erb :'team_event_results/show'
-#   end
-
-# end
 
 
 
