@@ -2,7 +2,7 @@
 
 <form action="/individual_event_results" method="post">
 
-  <label for="event_id">Select event: </label>
+  <label class="new" for="event_id">Select event: </label>
     <select name="event_id">
   <option selected value=<%=@event.id%>><%=@event.event_name%></option>
     <% @events.each do |event| %>
@@ -12,21 +12,21 @@
     <%end%>
     </select>
 
-<label for="gold_athlete">Select gold medal winner: </label>
+<label class="new" for="gold_athlete">Select gold medal winner: </label>
   <select name="gold_athlete">
   <% @athletes.each do |athlete| %>
     <option  value = <%=athlete.id%>><%=athlete.formal_name%></option>
   <%end%>
   </select>
 
-<label for="silver_athlete">Select silver medal winner: </label>
+<label class="new" for="silver_athlete">Select silver medal winner: </label>
   <select name="silver_athlete">
   <% @athletes.each do |athlete| %>
     <option  value = <%=athlete.id%>><%=athlete.formal_name%></option>
   <%end%>
   </select>
 
-  <label for="bronze_athlete">Select bronze medal winner: </label>
+  <label class="new" for="bronze_athlete">Select bronze medal winner: </label>
     <select name="bronze_athlete">
     <% @athletes.each do |athlete| %>
       <option  value = <%=athlete.id%>><%=athlete.formal_name%></option>

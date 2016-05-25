@@ -1,0 +1,204 @@
+body {
+
+  font-family: 'Montserrat', sans-serif;
+  /*background-image: url("beach.png");*/
+  /*background-attachment: fixed;*/
+  background-color: #61c3ff;
+
+}
+
+a, a:link,a:visited,a:focus{
+  color: inherit;
+  text-decoration: none;
+  }
+
+  a:hover {
+
+    color: #ffffff;
+  }
+
+nav {
+
+width: 100%;
+background-color: #007600;
+padding-top: 0%;
+position: fixed;
+   z-index: 10000;
+   top: 0px;
+   padding-bottom: 1%;
+   margin-bottom: 3%;
+
+}
+
+
+
+  nav a.one {
+
+    width:23%;
+    display: inline-block;
+    padding-left: 0.75%;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0.25%;
+    border-radius: 4px;
+    background-color: #fefe00;
+
+  }
+
+
+
+
+  nav a.two {
+
+    height: 2%;
+    width:15.5%;
+    display: inline-block;
+    text-align: center;
+    font-size: 0.8em;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0.25%;
+    border-radius: 4px;
+    background-color: #3200fe;
+
+
+  }
+
+  table {
+
+    width: 90%;
+    padding-top: 5%;
+    margin: auto;
+    font-size: 2em;
+    display: inline-block;
+
+  }
+
+
+table caption {
+
+  margin-top: 2%;
+  background-color: yellow;
+
+}
+
+
+th {
+
+  background-color: #3200fe;
+  color: yellow;
+
+}
+
+tr.one {
+
+  background-color: #007600;
+
+}
+
+tfoot.three {
+
+  font-size: 1em;
+
+}
+
+h3 {
+
+  margin: auto;
+  margin-top: 6%;
+  padding-bottom: 3%;
+  text-align: center;
+  font-size: 2em;
+
+
+}
+
+
+h4 {
+
+  margin: auto;
+  margin-top: 6%;
+  padding-bottom: 3%;
+  text-align: center;
+  font-size: 1.5em;
+
+}
+
+
+p {
+
+  text-align: center;
+  font-size: 1.3em;
+  color: #fefe00;
+  text-shadow: 2px 2px #000000;
+
+}
+
+a.athlete {
+
+  text-align: center;
+  font-size: 1.5em;
+  text-decoration: bold;
+  width: 100%;
+  color: #000000;
+
+}
+
+a.athlete:hover {
+
+  color: yellow;
+
+}
+
+
+a.event {
+
+  text-align: center;
+  font-size: 1.5em;
+  text-decoration: bold;
+  width: 100%;
+  color: #000000;
+
+}
+
+a.event:hover {
+
+  color: yellow;
+
+}
+
+p.show {
+
+  a.event {
+
+    margin: auto;
+    text-align: center;
+    font-size: 1.3em;
+    text-decoration: bold;
+    width: 100%;
+    color: #000000;
+
+  }
+
+  p.show1 {
+
+    margin: auto;
+
+  }
+
+  h5 {
+
+    margin: auto;
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+

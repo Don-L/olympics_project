@@ -2,14 +2,14 @@
 
 <form action="/events" method="post">
 
-<label for="event_name">Enter name of event:</label>
-<input type="text" name="event_name"></input> 
+<label class="new" for="event_name">Enter name of event:</label>
+<input type="text" name="event_name"></input><br> 
 
-<label for="is_team">Is this a team event?:</label>
+<label class="new" for="is_team">Is this a team event?:</label>
 <select name="is_team">
 <option value = <%=true%>>Yes</option>
 <option value = <%=false%>>No</option>
-</select>
+</select><br>
 
 <input type="submit" value="Save"></input>
 

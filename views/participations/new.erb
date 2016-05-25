@@ -2,14 +2,14 @@
 
 <form action="/participations" method="post">
 
-<label for="event_id">Select event:</label>
+<label class="new" for="event_id">Select event:</label>
 <select name="event_id">
 <% @events.each do |event| %>
   <option  value = <%=event.id%>><%=event.event_name%></option>
 <%end%>
 </select>
 
-<label for="athlete_id">Select athlete:</label>
+<label class="new" for="athlete_id">Select athlete:</label>
 <select name="athlete_id">
 <% @athletes.each do |athlete| %>
   <option  value = <%=athlete.id%>><%=athlete.formal_name%></option>

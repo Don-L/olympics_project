@@ -1,6 +1,8 @@
 <h3><%=@athlete.pretty_name%></h3>
 <h4><a href="/nations/<%=@nation.id%>"><%=@nation.nation_name%></a></h4>
 
+<p><a href="/athletes/<%=@athlete.id%>/edit">Edit/delete athlete</a></p>
+
 <%if @athlete.number_of_golds + @athlete.number_of_silvers + @athlete.number_of_bronzes == 0%>
 <p>This athlete has not yet won any medals</p>
 <%end%>
@@ -31,7 +33,7 @@
 <p>This athlete has not yet been registered for any events</p>
 <%elsif @events.length > 0%>
 <%@events.each do |event|%>
-<a href="/events/<%=event.id%>"><%=event.event_name%></a><br>
+<p><a href="/events/<%=event.id%>"><%=event.event_name%></a></p>
 <p><a href="/participations/<%=@athlete.participation(event.id).id%>/edit">Edit/delete registration</a></p>
 <%end%>
 <%end%>

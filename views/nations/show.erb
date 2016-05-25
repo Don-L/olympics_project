@@ -1,5 +1,7 @@
 <h3><%=@nation.nation_name%></h3>
 
+<p><a href="/nations/<%=@nation.id%>/edit">Edit/delete nation</a></p>
+
 <%if @nation.won_golds? == true%>
 <p>Gold medals: <%=@nation.number_of_golds%></p>
 <%end%>

@@ -2,7 +2,7 @@
 
 <form action="/athletes" method="post">
 
-<label for="nation_id">Select athlete nation:</label>
+<label class="new" for="nation_id">Select athlete nation:</label>
 
 <select name="nation_id">
 <% @nations.each do |nation| %>
@@ -10,12 +10,12 @@
 <%end%>
 </select>
 
-  <label for="last_name">Enter athlete last name:</label>
+  <label class="new" for="last_name">Enter athlete last name:</label>
   <input type="text" name="last_name"></input> 
 
-  <label for="first_name">Enter athlete first name:</label>
+  <label class="new" for="first_name">Enter athlete first name:</label>
   <input type="text" name="first_name"></input> 
 
-  <input type="submit" value="Save"></input>
+  <input class="new" type="submit" value="Save"></input>
 
   </form>

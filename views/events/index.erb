@@ -1,5 +1,5 @@
 <h3>Events</h3>
 
 <% @events.each do |event| %>
-<a href="/events/<%=event.id%>"><%=event.event_name%></a><br>
+<a class="event" href="/events/<%=event.id%>"><%=event.event_name%></a><br>
 <%end%>

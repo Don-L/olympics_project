@@ -1,5 +1,5 @@
 <h3>Athletes</h3>
 
 <% @athletes.each do |athlete| %>
-<a href="/athletes/<%=athlete.id%>"><%=athlete.formal_name%></a><br>
+<a class="athlete" href="/athletes/<%=athlete.id%>"><%=athlete.formal_name%></a><br>
 <%end%>

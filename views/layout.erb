@@ -2,9 +2,23 @@
 <html>
 <head>
   <title>Rio 2016 Olympics</title>
+  <link rel="stylesheet" type="text/css" href="/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Kanit:700|Montserrat' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
+<nav>
+<a class="one" href="/">Home</a>
+<a class="one" href="/nations">Nations</a>
+<a class="one" href="/athletes">Athletes</a>
+<a class="one" href="/events">Events</a><br>
+<a class="two" href="/nations/new">New nation</a>
+<a class="two" href="/athletes/new">New Athlete</a>
+<a class="two" href="/events/new">New event</a>
+<a class="two" href="/participations/new">Register athlete for event</a>
+<a class="two" href="/team_event_results/new">Add team event result</a>
+<a class="two" href="/individual_event_results/new">Add individual event result</a>
+</nav>
 <%= yield %>
 </body>
 </html>

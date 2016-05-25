@@ -1,7 +1,7 @@
 <h3><%=@event.event_name%></h3><br>
-<a href="/events/<%=@event.id%>/edit">Edit/delete event</a>
+<p class="show"><a href="/events/<%=@event.id%>/edit">Edit/delete event</a></p>
 <%if @event.is_team == 't'%>
-  <p>Team event</p><br>
+  <h4>Team event</h4>
   <%if @event.has_result? == true%>
   <p>Gold medal winners: </p>
   <h5><a href="/nations/<%=@event.result.team_gold_medal_winner.id%>"><%=@event.result.team_gold_medal_winner.nation_name%></a></h5>
@@ -20,7 +20,7 @@
     <%end%>
     <a href="/team_event_results/<%=@event.result.id%>/edit">Edit result</a>
   <%else%><p>No result has been recorded for this event</p>
-  <a href="/team_event_results/new/?event=<%=@event.id%>">Register result</a>
+  <p id="show1"><a href="/team_event_results/new/?event=<%=@event.id%>">Register result</a></p>
   <%end%>
   <%else%>
   <h4>Individual event</h4>
