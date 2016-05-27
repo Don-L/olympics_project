@@ -16,23 +16,23 @@
 
 
 <%if @nation.won_golds? == true%>
-<p>Gold medal events: </p>
+<h4>Gold medal events: </h4>
 <%@gold_results.each do |result|%>
-<a href="/events/<%=result.event.id%>"><%=result.event.event_name%></a>
+<p><a class ="wonevent" href="/events/<%=result.event.id%>"><%=result.event.event_name%></a></p>
 <%end%>
 <%end%>
 
 <%if @nation.won_silvers? == true%>
-<p>Silver medal events: </p>
+<h4>Silver medal events: </h4>
 <%@silver_results.each do |result|%>
-<a href="/events/<%=result.event.id%>"><%=result.event.event_name%></a>
+<p><a class="wonevent" href="/events/<%=result.event.id%>"><%=result.event.event_name%></a></p>
 <%end%>
 <%end%>
 
 <%if @nation.won_bronzes? == true%>
-<p>Bronze medal events: </p>
+<h4>Bronze medal events: </h4>
 <%@bronze_results.each do |result|%>
-<a href="/events/<%=result.event.id%>"><%=result.event.event_name%></a>
+<p><a class="wonevent" href="/events/<%=result.event.id%>"><%=result.event.event_name%></p>
 <%end%>
 <%end%>
 

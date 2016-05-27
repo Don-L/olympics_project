@@ -20,11 +20,12 @@ get '/individual_event_results/new' do
 
   if params[:event] == nil
     @event = Event.all_individual.first
+    @events = Event.all_individual
   else
     @event = Event.find(params[:event])
+    @events = [@event]
   end
-  @athletes = Athlete.all
-  @events = Event.all_individual
+  @athletes = Participation.event_athletes(@event.id)
   erb :'individual_event_results/new'
 end
 
